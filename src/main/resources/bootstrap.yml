@@ -5,16 +5,8 @@ spring:
 ---
 spring:
   application:
-    name: global
-  profiles:
-    active: dev
-    include: common,common-eureka
----    
-spring:
-  application:
     name: backend-service-config
   profiles:
     active: local
-    include: common
+    include: common,common-eureka
     
-
