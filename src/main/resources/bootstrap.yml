@@ -2,11 +2,12 @@ spring:
   cloud: 
     config:
       uri: ${config_servers:http://localhost:9001}
+      searchPaths: backend-service-config,eureka
 ---
 spring:
   application:
     name: backend-service-config
   profiles:
     active: local
-    include: common,common-eureka
+    include: common
     
