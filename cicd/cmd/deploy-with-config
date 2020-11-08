@@ -121,7 +121,7 @@ echo ""
 echo "STEP7. Deploy application "
 
 IMG="${image_registry}\/${image_project}\/${image_repository}:${image_tag}"
-sed "s@{{ SERVICE_NAME }}@${image_repository}@g" ${basedir}/cicd/deploy.yaml | \
+sed "s@{{ SERVICE_NAME }}@${image_repository}@g" ${basedir}/cicd/deploy-with-config.yaml | \
 sed "s@{{ NAMESPACE }}@${namespace}@g" - | \
 sed "s@{{ SERVICEACCOUNT }}@${serviceaccount}@g" - | \
 sed "s@{{ IMAGE_NAME }}@${IMG}@g" - | \
