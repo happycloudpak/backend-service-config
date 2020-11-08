@@ -17,9 +17,9 @@ fi
 
 profile=$1
 basedir=$2
-appname=`cat ${basedir}/pom.xml | grep \<finalName\> | cut -d ">" -f2 | cut -d "<" -f1`
+appname=`cat ${basedir}/pom.xml | grep \<name\> | cut -d ">" -f2 | cut -d "<" -f1`
 if [ "${appname}" == "" ]; then
-	echo "CAN'T get application name in pom.xml. check <finalName>"
+	echo "CAN'T get application name. check <name> in pom.xml"
 	exit 1
 fi
 
