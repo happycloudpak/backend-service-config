@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "************* BUILD&PUSH Container image *****************"
+echo ""
+echo "************* RUN BUILD&PUSH Container image *****************"
+echo ""
 echo "STEP1: Get Parameters"
 
 # get parameters
@@ -45,5 +47,8 @@ docker tag ${image_registry}/${image_project}/${image_repository}:${image_tag} $
 docker push ${image_registry}/${image_project}/${image_repository}:${image_tag}
 docker push ${image_registry}/${image_project}/${image_repository}:latest
 
+echo ""
+echo "************* END BUILD&PUSH Container image *****************"
+echo ""
 exit 0
 

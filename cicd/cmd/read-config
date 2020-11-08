@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo ""
 echo "************** RUN READ CONFIG ***************"
 echo ""
 
@@ -105,3 +106,5 @@ mkFile
 
 echo ""
 echo "************** END READ CONFIG ***************"
+echo ""
+exit 0

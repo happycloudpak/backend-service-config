@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo ""
 echo "************** CLEAR All resources *****************"
 echo ""
 
@@ -48,5 +49,5 @@ clearCMSecret
 
 echo ""
 echo "************* All resources CLEARED *****************"
-
+echo ""
 exit 0

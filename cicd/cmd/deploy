@@ -32,7 +32,9 @@ function generate-secret() {
 	fi
 }
 
-echo "************* DEPLOY service *****************"
+echo ""
+echo "************* RUN DEPLOY service *****************"
+echo ""
 
 # get parameters
 echo "STEP1: Get Parameters"
@@ -135,4 +137,8 @@ else
     echo "******** FAIL to convert deployment yaml !!! ******** "
 fi
 
+
+echo ""
+echo "************* END DEPLOY service *****************"
+echo ""
 exit 0

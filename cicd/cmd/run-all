@@ -39,4 +39,5 @@ ${basedir}/cicd/cmd/deploy ${context} ${profile} ${basedir}
 if [ $? -eq 1 ]; then exit 1; fi
 
 echo ""
+echo "************** END ALL ***************"
 exit 0
