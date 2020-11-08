@@ -8,12 +8,12 @@ spring:
     config:
       uri: ${config_servers:http://localhost:9001}
       #searchPaths: ${config_search_paths:/}
-      searchPaths: /
+      #searchPaths: /
 ---
 spring:
   application:
     name: backend-service-config
   profiles:
     active: local
-    #include: common
+    include: common
     
