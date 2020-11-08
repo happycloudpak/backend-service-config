@@ -1,8 +1,7 @@
 spring:
   cloud: 
     config:
-      #uri: ${config_servers:http://localhost:9001}
-      uri: config-server
+      uri: ${config_servers:http://localhost:9001}
 ---
 spring:
   application:
@@ -17,4 +16,5 @@ spring:
   profiles:
     active: local
     include: common
+    
 
