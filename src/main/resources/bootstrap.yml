@@ -1,3 +1,6 @@
+server:
+  port: ${server_port:8001}
+  
 spring:
   cloud: 
     config:
