@@ -31,11 +31,11 @@ ${basedir}/cicd/cmd/read-config ${profile} ${basedir}
 if [ $? -eq 1 ]; then exit 1; fi
 
 # build & push
-${basedir}/cicd/cmd/build-image ${username} ${password} ${basedir}
+${basedir}/cicd/cmd/build-image-with-config ${username} ${password} ${basedir}
 if [ $? -eq 1 ]; then exit 1; fi
 
 # deploy
-${basedir}/cicd/cmd/deploy ${context} ${profile} ${basedir} 
+${basedir}/cicd/cmd/deploy-with-config ${context} ${profile} ${basedir} 
 if [ $? -eq 1 ]; then exit 1; fi
 
 echo ""
