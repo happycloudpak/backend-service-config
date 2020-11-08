@@ -77,7 +77,7 @@ uri="http://${host}/${appname}"
 # generate deployment config file
 echo "STEP5. Generate deployment config file "
 fn=config.json
-url=${uri}/config-common,config-${profile}
+url=${uri}/cicd-common,cicd-${profile}
 ofn=${basedir}/cicd/config.properties
 echo "" > ${ofn}
 
@@ -87,7 +87,7 @@ mkFile
 # generate configmap file
 echo "STEP6. Generate configmap file "
 fn=cm.json
-url=${uri}/common,${profile}
+url=${uri}/cm-common,cm-${profile}
 ofn=${basedir}/cicd/configmap.env
 echo "" > ${ofn}
 
