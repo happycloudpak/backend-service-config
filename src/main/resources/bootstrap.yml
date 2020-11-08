@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: backend-service-config
+  profiles:
+    active: local
+    include: common,common-eureka
+
