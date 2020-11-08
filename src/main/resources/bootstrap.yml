@@ -2,7 +2,7 @@ spring:
   cloud: 
     config:
       uri: ${config_servers:http://localhost:9001}
-      searchPaths: backend-service-config,eureka
+      searchPaths: /,backend-service-config,eureka
 ---
 spring:
   application:
