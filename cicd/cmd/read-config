@@ -4,6 +4,10 @@ echo ""
 echo "************** RUN READ CONFIG ***************"
 echo ""
 
+# check below variables and update if it's needed
+INGRESS_CONFIG_SERVER=config-server
+JQ_DOWNLOAD_URL=https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+
 echo "STEP1. Get parameters "
 # get parameters
 if ([ $# -lt 2 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); then
@@ -58,14 +62,14 @@ function mkFile() {
 echo "STEP2. Check jq program and install it if not"
 chk=`which ./jq`
 if [ $? -eq 1 ]; then
-  wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+  wget -O jq ${JQ_DOWNLOAD_URL}
   chmod +x ./jq
   echo "jq installed"
 fi
 
 # get config-server ingress host
 echo "STEP4. Get config server ingress host "
-host=`kubectl get ing config-server -o yaml | grep host: | cut -d ":" -f 2 | tr -d " "`
+host=`kubectl get ing ${INGRESS_CONFIG_SERVER} -o yaml | grep host: | cut -d ":" -f 2 | tr -d " "`
 if [ "${host}" == "" ]; then
 	echo "CAN't get config server ingress address"
 	exit 1
