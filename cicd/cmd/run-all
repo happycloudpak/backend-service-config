@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "************** RUN ALL ***************"
+echo ""
+
 # get parameters
 if ([ $# -lt 5 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); then
   echo "run-all <reg username> <reg password> <k8s-context> <profile> <root directory>"
@@ -10,7 +13,7 @@ if ([ $# -lt 5 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); the
   echo " root directory: project의 최상위 디렉토리. '.'은 현재 디렉토리 의미함. "
   echo " ex) ./run-all user1 password1 kubernetes-admin@kubernetes prod ~/work"
   echo " ex) ./run-all user1 password1 . prod ."
-  exit 2
+  exit 1
 fi
 
 username=$1
@@ -21,15 +24,19 @@ basedir=$5
 
 # build artifactory
 ${basedir}/mvnw clean package
-if [ $? -eq 1 ]; then exit 2; fi
+if [ $? -eq 1 ]; then exit 1; fi
+
+# read configuration
+${basedir}/cicd/cmd/read-config ${profile} ${basedir}
+if [ $? -eq 1 ]; then exit 1; fi
 
 # build & push
 ${basedir}/cicd/cmd/build-image ${username} ${password} ${basedir}
-if [ $? -eq 1 ]; then exit 2; fi
+if [ $? -eq 1 ]; then exit 1; fi
 
 # deploy
 ${basedir}/cicd/cmd/deploy ${context} ${profile} ${basedir} 
-if [ $? -eq 1 ]; then exit 2; fi
+if [ $? -eq 1 ]; then exit 1; fi
 
 echo ""
 exit 0

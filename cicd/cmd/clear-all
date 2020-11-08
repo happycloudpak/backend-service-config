@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "************** CLEAR All resources **********$*******"
+echo "************** CLEAR All resources *****************"
 echo ""
 
 # get parameters
@@ -38,24 +38,12 @@ app=${apps[0]}
 
 # delete configmap
 resource_kind=configmap
-resource_postfix=cm-common
-clearCMSecret
-
-resource_postfix=cm-dev
-clearCMSecret
-
-resource_postfix=cm-prod
+resource_postfix=cm
 clearCMSecret
 
 # delete secret
 resource_kind=secret
-resource_postfix=secret-common
-clearCMSecret
-
-resource_postfix=secret-dev
-clearCMSecret
-
-resource_postfix=secret-prod
+resource_postfix=secret
 clearCMSecret
 
 echo ""

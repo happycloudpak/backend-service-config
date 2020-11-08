@@ -29,13 +29,9 @@ spec:
           value: {{ PROFILE }}
         envFrom:
         - configMapRef:
-            name: "{{ SERVICE_NAME }}-cm-common"        
-        - configMapRef:
-            name: "{{ SERVICE_NAME }}-cm-{{ PROFILE }}" 
+            name: "{{ SERVICE_NAME }}-cm"        
         - secretRef:
-            name: "{{ SERVICE_NAME }}-secret-common"           
-        - secretRef:
-            name: "{{ SERVICE_NAME }}-secret-{{ PROFILE }}"
+            name: "{{ SERVICE_NAME }}-secret"           
         ports:
         - name: port1
           containerPort: 18180

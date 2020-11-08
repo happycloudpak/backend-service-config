@@ -44,7 +44,7 @@ if ([ $# -lt 3 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); the
   echo " root directory: project의 최상위 디렉토리. '.'은 현재 디렉토리 의미함. "
   echo " ex) ./deploy kubernetes-admin@kubernetes prod ~/work"
   echo " ex) ./deploy . prod ."
-  exit 2
+  exit 1
 fi
 
 context=$1
@@ -70,10 +70,8 @@ echo ""
 # set variables from config.properties: converted from '.' to '_'
 echo "STEP2. Set environment variables "
 
-eval $(${basedir}/cicd/cmd/set-env ${basedir}/cicd/config/config-common.properties)
-if [ "${profile}" != "" ]; then
-	eval $(${basedir}/cicd/cmd/set-env ${basedir}/cicd/config/config-${profile}.properties)
-fi
+eval $(${basedir}/cicd/cmd/set-env ${basedir}/cicd/config.properties)
+
 echo ""
 
 # switch kubenetes context
@@ -99,30 +97,20 @@ echo ""
 # configmap revise
 echo "STEP5. Create ConfigMap "
 
-cm="${image_repository}-cm-common"
-filepath=${basedir}/cicd/env/cm-common.env
+cm="${image_repository}-cm"
+filepath=${basedir}/cicd/configmap.env
 generate-cm
-if [ "${RESULT}" == "NK" ]; then exit 2; fi
-
-cm="${image_repository}-cm-${profile}"
-filepath=${basedir}/cicd/env/cm-${profile}.env
-generate-cm
-if [ "${RESULT}" == "NK" ]; then exit 2; fi
+if [ "${RESULT}" == "NK" ]; then exit 1; fi
 
 echo ""
 
 # secret revise
 echo "STEP6. Create Secret "
 
-secret="${image_repository}-secret-common"
-filepath=${basedir}/cicd/env/secret-common.env
+secret="${image_repository}-secret"
+filepath=${basedir}/cicd/secret.env
 generate-secret
-if [ "${RESULT}" == "NK" ]; then exit 2; fi
-
-secret="${image_repository}-secret-${profile}"
-filepath=${basedir}/cicd/env/secret-${profile}.env
-generate-secret
-if [ "${RESULT}" == "NK" ]; then exit 2; fi
+if [ "${RESULT}" == "NK" ]; then exit 1; fi
 
 echo ""
 
