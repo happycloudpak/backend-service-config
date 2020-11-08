@@ -36,12 +36,16 @@ public class BackendController {
 	
 	@Value("${call.divisor}")
 	private int divisor;
+	
+	@Value("${runtime.profile}")
+	private String rteProfile;
+	
 	private int calls = 0;
 	
 	@GetMapping("/port")
 	@ApiOperation(value = "Return Port number")
-	public String port() {
-		return "PORT: " + port;
+	public String port() {		
+		return "PORT: " + port + " ON "+rteProfile;
 	}
 	
 	@GetMapping("/weather")
@@ -54,7 +58,7 @@ public class BackendController {
 			return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
 		}
 		System.out.println("Clean");
-		return new ResponseEntity<String>("Clean", HttpStatus.OK);
+		return new ResponseEntity<String>("Clean ON "+rteProfile, HttpStatus.OK);
 	}
 
 	private boolean isUnavailable() {
