@@ -7,12 +7,12 @@ echo "STEP1: Get Parameters"
 
 # get parameters
 if ([ $# -lt 3 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); then
-  echo "build-image <reg username> <reg password> <root directory>"
+  echo "build-image-with-config <reg username> <reg password> <root directory>"
   echo " reg username: container image registry username "
   echo " reg password: container image registry password "
   echo " root directory: project의 최상위 디렉토리. '.'은 현재 디렉토리 의미함. "
-  echo " ex) ./build-image user1 password1 ~/work"
-  echo " ex) ./build-image user1 password1 ."
+  echo " ex) ./build-image-with-config user1 password1 ~/work"
+  echo " ex) ./build-image-with-config user1 password1 ."
   exit 1
 fi
 

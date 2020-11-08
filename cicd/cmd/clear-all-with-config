@@ -6,10 +6,10 @@ echo ""
 
 # get parameters
 if ([ $# -lt 1 ]) || ([ $# -eq 1 ] && [ "$1" == "-h" -o "$1" == "--help" ]); then
-  echo "clear-all <root directory>"
+  echo "clear-all-with-config <root directory>"
   echo " root directory: project의 최상위 디렉토리. '.'은 현재 디렉토리 의미함. "
-  echo " ex) ./clear-all ~/work"
-  echo " ex) ./clear-all ."
+  echo " ex) ./clear-all-with-config ~/work"
+  echo " ex) ./clear-all-with-config ."
   exit 2
 fi
 
