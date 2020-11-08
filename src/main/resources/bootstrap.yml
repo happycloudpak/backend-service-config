@@ -9,7 +9,6 @@ spring:
   cloud: 
     config:
       uri: ${config_servers:http://localhost:9001}
-      #searchPaths: ${config_search_paths:/}
       searchPaths: backend-service-config
 ---
 spring:
