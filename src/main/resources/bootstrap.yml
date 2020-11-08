@@ -7,13 +7,12 @@ spring:
   cloud: 
     config:
       uri: ${config_servers:http://localhost:9001}
-      #searchPaths: ${config_search_paths:/}
-      searchPaths: /
+      searchPaths: ${config_search_paths:/}
 ---
 spring:
   application:
     name: backend-service-config
   profiles:
     active: local
-    #include: common
+    include: common
     
