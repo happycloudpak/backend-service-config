@@ -34,18 +34,17 @@ public class BackendController {
 	@Value("${server.port}")
 	private String port;
 	
-	@Value("${call.divisor}")
+	@Value("${call_divisor}")
 	private int divisor;
-	
-	@Value("${runtime.profile}")
-	private String rteProfile;
-	
 	private int calls = 0;
+	
+	@Value("${greeting_message}")
+	private String greeting;
 	
 	@GetMapping("/port")
 	@ApiOperation(value = "Return Port number")
-	public String port() {		
-		return "PORT: " + port + " ON "+rteProfile;
+	public String port() {
+		return "PORT: " + port;
 	}
 	
 	@GetMapping("/weather")
@@ -58,7 +57,7 @@ public class BackendController {
 			return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
 		}
 		System.out.println("Clean");
-		return new ResponseEntity<String>("Clean ON "+rteProfile, HttpStatus.OK);
+		return new ResponseEntity<String>("Clean", HttpStatus.OK);
 	}
 
 	private boolean isUnavailable() {
@@ -105,10 +104,17 @@ public class BackendController {
 		return "["+port+"] => ["+baseUrl+"] " + response.getBody();
 	}
 	
-
+	@GetMapping("/greeting")
+	@ApiOperation(value = "Return greeting value in configuration using config server")
+	public String message() {
+		return "Greeting: " + greeting;
+	}
+	
 	private static HttpEntity<?> getHeaders() throws IOException {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
 		return new HttpEntity<>(headers);
 	}	
+	
+	
 }
