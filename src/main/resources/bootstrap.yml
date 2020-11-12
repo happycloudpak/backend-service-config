@@ -2,7 +2,9 @@ server:
   port: ${server_port:8001}
 call:
   divisor: ${call_divisor:0}
-  
+greeting:
+  message: ${greeting_message:"HI"}
+ 
 spring:
   cloud: 
     config:
